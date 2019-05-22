@@ -22,8 +22,8 @@ public static class ItemData
                  name = "Meat";
                  value = 5;
                  description = "Meat of mysterious origin";
-                 icon = "Meat_Icon";
-                 mesh = "Meat_Mesh";
+                 icon = "Food/Meat_Icon";
+                 mesh = "Food/Meat_Mesh";
                  type = ItemType.Food;
                  heal = 17;
                  amount = 1;
@@ -32,8 +32,8 @@ public static class ItemData
                 name = "Chicken";
                 value = 3;
                 description = "From birb";
-                icon = "Chicken_Icon";
-                mesh = "Chicken_Mesh";
+                icon = "Food/Chicken_Icon";
+                mesh = "Food/Chicken_Mesh";
                 type = ItemType.Food;
                 heal = 12;
                 amount = 1;
@@ -42,8 +42,8 @@ public static class ItemData
                 name = "Bread";
                 value = 2;
                 description = "Peasant Food";
-                icon = "Bread_Icon";
-                mesh = "Bread_Mesh";
+                icon = "Food/Bread_Icon";
+                mesh = "Food/Bread_Mesh";
                 type = ItemType.Food;
                 heal = 10;
                 amount = 1;
@@ -165,8 +165,8 @@ public static class ItemData
                 name = "Apple";
                 value = 5;
                 description = "Crisp fruit. Healthy snack. Found in apple trees";
-                icon = "Apple_Icon";
-                mesh = "Apple_Mesh";
+                icon = "Food/Apple_Icon";
+                mesh = "Food/Apple_Mesh";
                 type = ItemType.Food;
                 heal = 5;
                 amount = 1;
@@ -184,7 +184,7 @@ public static class ItemData
             Heal = heal,
             Type = type,
             Mesh = Resources.Load("Prefabs/"+ mesh) as GameObject,
-            Icon = Resources.Load("Icon/" + icon) as Texture2D,
+            Icon = Resources.Load("Icons/" + icon) as Texture2D,
         };
         return temp;
     }
