@@ -1,40 +1,70 @@
 ﻿using UnityEngine;
 using System.Collections;
-//this script can be found in the Component section under the option Intro PRG/Character Movement
-//This script requires the component Character controller to be attached to the Game Object
-public class Movement : MonoBehaviour 
+//this script can be found in the Component section under the option Character Set Up 
+//Character Movement
+//This script requires the component Character controller
+[RequireComponent(typeof(CharacterController))]
+[AddComponentMenu("Intro PRG/RPG/Player/Movement")]
+//this script will require a charactercontroller
+//on this object to reference later
+public class Movement : MonoBehaviour
 {
-    #region Extra Study
-    //Input Manager(https://docs.unity3d.com/Manual/class-InputManager.html)
-    //Input(https://docs.unity3d.com/ScriptReference/Input.html)
-    //CharacterController allows you to move the character kinda like Rigidbody (https://docs.unity3d.com/ScriptReference/
-    #endregion
     #region Variables
+    [Header("PLAYER MOVEMENT")]
+    [Space(5)]
+    [Header("Characters MoveDirection")]
+    //vector3 called moveDirection
+    public Vector3 moveDirection;
+    //we will use this to apply movement in worldspace
+    //private CharacterController (https://docs.unity3d.com/ScriptReference/CharacterController.html) charC
+    private CharacterController _characterController;
+    [Header("Character Variables")]
+    //public float variables jumpSpeed, speed, gravity
+    public float jumpSpeed = 10;
+    public float speed = 8;
+    public float gravity = 5;
     public static bool canMove;
-    [Header("Character")]
-    //vector3 called moveDir //we will use this to apply movement in worldspace
-    public Vector3 moveDir;
-    //Character controller called _charC CharacterController.html) 
-    public CharacterController _charC;
-    [Header("Character Speeds")]
-    //public float variables jumpSpeed 8 & speed 5 & gravity 20
-    public float jumpSpeed = 8;
-    public float speed = 5;
-    public float gravity = 20;
     #endregion
-    #region Start  
-    //_charc is set to the Character controller on this GameObject
-    //CharacterController _charc = GetComponent<CharacterController>();
-     #endregion
+    #region Start
+    private void Start()
+    {
+        canMove = true;
+        //charc is on this game object we need to get the character controller that is attached to it
+        _characterController = this.GetComponent<CharacterController>();
+
+    }
+    #endregion
     #region Update
-        //if our character is grounded
-            //set moveDir to the inputs direction
-            //moveDir's forward is changed from global z (forward) to the Game Objects local Z (forward)//allows us to move where player is facing
-            //moveDir is multiplied by speed so we move at a decent pace
-            //if the input button for jump is pressed then           
-                //our moveDir.y is equal to our jump speed
-        //regardless of if we are grounded or not the players moveDir.y is always affected by gravity timesed my time.deltaTime to normalize it
-        //we then tell the character Controller that it is moving in a direction multiplied Time.deltaTime    
+    private void Update()
+    {
+        if (canMove)
+        {
+            //if our character is grounded
+            if (_characterController.isGrounded)
+            {
+                //we are able to move in game scene meaning
+                //Input Manager(https://docs.unity3d.com/Manual/class-InputManager.html)
+                //Input(https://docs.unity3d.com/ScriptReference/Input.html)
+                //moveDir is equal to a new vector3 that is affected by Input.Get Axis.. Horizontal, 0, Vertical
+                moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+                //moveDir is transformed in the direction of our moveDir
+                moveDirection = transform.TransformDirection(moveDirection);
+                //our moveDir is then multiplied by our speed
+                moveDirection *= speed;
+                //we can also jump if we are grounded so
+                //in the input button for jump is pressed then
+                if (Input.GetButton("Jump"))
+                {
+                    //our moveDir.y is equal to our jump speed
+                    moveDirection.y = jumpSpeed;
+                }
+            }
+            //regardless of if we are grounded or not the players moveDir.y is always affected by gravity timesed my time.deltaTime to normalize it
+            moveDirection.y -= gravity * Time.deltaTime;
+            //we then tell the character Controller that it is moving in a direction timesed Time.deltaTime
+            _characterController.Move(moveDirection * Time.deltaTime);
+        }
+    }
     #endregion
 }
 

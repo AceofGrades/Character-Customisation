@@ -74,8 +74,8 @@ public static class ItemData
                 name = "War Axe";
                 value = 120;
                 description = "Bladed weapon with a heavy axe head. Powerful, but slow. Used to sunder foes";
-                icon = "War_Axe_Icon";
-                mesh = "War_Axe_Mesh";
+                icon = "Weapons/axes/WarAxe_Icon";
+                mesh = "Resources/Prefabs/WarAxe_Mesh";
                 type = ItemType.Weapon;
                 damage = 14;
                 amount = 1;
@@ -96,8 +96,8 @@ public static class ItemData
                 name = "Peasant's Hood";
                 value = 3;
                 description = "Hood.";
-                icon = "Peasant's_Hood_Icon";
-                mesh = "Peasant's_Hood_Mesh";
+                icon = "Armour/helmets/PeasantsHood_Icon";
+                mesh = "Armour/helmets/PeasantsHood_Mesh";
                 type = ItemType.Apparel;
                 armour = 3;
                 amount = 1;
@@ -106,20 +106,20 @@ public static class ItemData
                 name = "Thief's Hood";
                 value = 10;
                 description = "Cooler hood.";
-                icon = "Thief's_Hood_Icon";
-                mesh = "Thief's_Hood_Mesh";
+                icon = "Armour/helmets/ThiefsHood_Icon";
+                mesh = "Armour/helmets/ThiefsHood_Mesh";
                 type = ItemType.Apparel;
                 armour = 8;
                 amount = 1;
                 break;
             case 202:
                 name = "Wizard's Hood";
-                value = 15;
+                value = 1000000;
                 description = "Chad hood.";
-                icon = "Wizard's_Hood_Icon";
-                mesh = "Wizard's_Hood_Mesh";
+                icon = "Armour/helmets/WizardsHood_Icon";
+                mesh = "Armour/helmets/WizardsHood_Mesh";
                 type = ItemType.Apparel;
-                armour = 5;
+                armour = 999;
                 amount = 1;
                 break;
             #endregion
